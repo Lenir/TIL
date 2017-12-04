@@ -1,0 +1,16 @@
+-- make Exchange
+-- 1500won + 1$ = 3000won (1500 : 1)
+-- 1$ + 2$ = 3$
+-- make 'amount' private
+-- make Dollar Class
+-- make Dollar's 'add' method
+-- Dollar floating point
+-- Consider Exchange rate Changes
+-- make Won Class
+-- make Won's 'add' method
+-- make Won's 'add' method on parameter 'Dollar'
+
+- make QuickSort
+- qsort([2,5,1,3,4,7,6]) = [1,2,3,4,5,6,7]
+-- make Qsort class
+-- make qsort method

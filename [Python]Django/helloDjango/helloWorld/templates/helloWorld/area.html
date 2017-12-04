@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{{area}}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+<h1>파티 지역</h1>
+<br>
+{% if party %}
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td><B>이름</B></td>
+            <td><B>소개</B></td>
+            <td><B>나이</B></td>
+            <td><B>MVP 선정</B></td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for guest in guests %}
+        <tr>
+            <td> {{guest.name}}</td>
+            <td> {{guest.introduction}}</td>
+            <td> {{guest.age}}세 </td>
+            <td>
+                <form action = "/pajamaparties/{{party.id}}/" method = "post">
+                {% csrf_token %}
+                    <button name="MVPVote" value="{{guest.id}}">선택</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        <tbody>
+    </table>
+{% else %}
+파티가 없습니다
+{% endif %}
+</div>
+</body>
