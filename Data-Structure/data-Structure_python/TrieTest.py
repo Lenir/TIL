@@ -25,6 +25,13 @@ class TrieTest(unittest.TestCase):
         self.assertIn("Spam?", words)
         self.assertIn("Spam!", words)
 
+    def test_getWordsInMiddle(self):
+        self.trie.insertWord("Supply")
+        self.trie.insertWord("Support")
+        startsFromUList= self.trie.root.getChildNode("S").getChildNode("u").getWordsFromHere()
+        self.assertNotIn("Spam!", startsFromUList)
+        self.assertIn("upply", startsFromUList)
+
     def test_ChildNotFoundExceptionRaises(self):
         with self.assertRaises(ChildNodeNotFound):
             self.trie.root.getChildNode("*")
