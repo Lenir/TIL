@@ -87,3 +87,16 @@ class TrieNode:
 
 class ChildNodeNotFound(Exception):
     pass
+
+
+if __name__ == "__main__":
+    trie = Trie()
+    trie.insertWord("SPAM")
+    trie.insertWord("SPAM!")
+    trie.insertWord("SPAM?")
+    trie.insertWord("SPAM*")
+    trie.insertWord("SPAM.")
+    trie.insertWord("SPAM;")
+
+    print(trie.getWords())
+    print(trie.getNodeNum())
