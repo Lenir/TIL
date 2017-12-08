@@ -1,6 +1,6 @@
-# python sort
+# Sort Algorithms - Python
 
-repository for practicing python Sort algorithms!
+repository for practicing Sort algorithms with Python! and with unittest code, too.
 
 ## implemented
 - Bubble sort
