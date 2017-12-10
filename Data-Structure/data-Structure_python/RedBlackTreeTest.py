@@ -28,3 +28,9 @@ class RedBlackTreeTest(unittest.TestCase):
         self.rbt.insertValue(40)
         self.rbt.print()
         self.assertTrue(True)
+
+    def test_balancing(self):
+        self.rbt.insertValue(20)
+        self.rbt.insertValue(30)
+        self.rbt.insertValue(40)
+        self.assertEqual(20, self.rbt.root.value)

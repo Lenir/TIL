@@ -146,7 +146,7 @@ class RBTNode:
             else:
                 parent.rChild = rChild
         except NoneNodeRefernceException:
-            pass
+            rChild.parent = None
         self.parent = rChild
 
     def rotateRight(self):
@@ -168,14 +168,14 @@ class RBTNode:
             else:
                 parent.lChild = lChild
         except NoneNodeRefernceException:
-            pass
+            lChild.parent = None
         self.parent = lChild
 
     def printDescendantNodes(self):
         print("[" + str(self.value), end=" ")
         try:
             lChild = self.getLChild()
-            print("Left : " + str(lChild().value), end=" ")
+            print("Left : " + str(lChild.value), end=" ")
         except NoneNodeRefernceException:
             pass
 
@@ -279,7 +279,8 @@ class RBTNode:
     def getRoot(self):
         parent = self
         try:
-            return parent.getParent().getRoot()
+            parent = parent.getParent()
+            return parent.getRoot()
         except NoneNodeRefernceException:
             return parent
 
