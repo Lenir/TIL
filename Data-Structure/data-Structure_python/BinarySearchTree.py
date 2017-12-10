@@ -1,4 +1,4 @@
-class BinaryTree:
+class BinarySearchTree:
     root = None
 
     def __init__(self, value):
@@ -124,7 +124,7 @@ class NodeNotFound(Exception):
 
 
 def main():
-    binaryTree = BinaryTree(8)
+    binaryTree = BinarySearchTree(8)
     binaryTree.addNode(3)
     binaryTree.addNode(10)
     binaryTree.addNode(6)

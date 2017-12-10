@@ -1,9 +1,9 @@
-from BinaryTree import *
+from BinarySearchTree import *
 import unittest
 
-class BinaryTreeTest(unittest.TestCase):
+class BinarySearchTreeTest(unittest.TestCase):
     def setUp(self):
-        self.binaryTree = BinaryTree(8)
+        self.binaryTree = BinarySearchTree(8)
         self.binaryTree.addNode(3)
         self.binaryTree.addNode(10)
         self.binaryTree.addNode(6)
@@ -17,11 +17,11 @@ class BinaryTreeTest(unittest.TestCase):
         del self.binaryTree
 
     def test_treeGen(self):
-        binaryTree = BinaryTree(1000)
+        binaryTree = BinarySearchTree(1000)
         self.assertEqual(1000, binaryTree.root.getValue())
 
     def test_addNode(self):
-        binaryTree = BinaryTree(1000)
+        binaryTree = BinarySearchTree(1000)
         binaryTree.addNode(-10)
         self.assertEqual(-10, binaryTree.root.lchild.value)
 
