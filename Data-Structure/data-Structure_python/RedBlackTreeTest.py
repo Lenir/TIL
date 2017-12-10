@@ -33,4 +33,6 @@ class RedBlackTreeTest(unittest.TestCase):
         self.rbt.insertValue(20)
         self.rbt.insertValue(30)
         self.rbt.insertValue(40)
+        self.rbt.insertValue(50)
+        self.rbt.print()
         self.assertEqual(20, self.rbt.root.value)

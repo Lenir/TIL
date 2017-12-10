@@ -40,7 +40,8 @@ class RedBlackTree:
                 return currentNode
 
     def print(self):
-        self.root.printDescendantNodes()
+        print()
+        self.root.printDescendantNodes(0)
 
 class RBTNode:
     def __init__(self, value):
@@ -99,10 +100,10 @@ class RBTNode:
         parent = self.getParent()
         grandpa = self.getGrandParent()
         try:
-            if self is parent.getRChild() and parent is grandpa.getLChild():
+            if self.isRightChild() and parent.isLeftChild():
                 parent.rotateLeft()
                 self = self.lChild()
-            elif self is parent.getLChild() and parent is grandpa.getRChild():
+            elif self.isLeftChild() and parent.isRightChild():
                 parent.rotateRight()
                 self = self.rChild()
         except NoneNodeRefernceException:
@@ -117,13 +118,13 @@ class RBTNode:
         parent.paintBlack()
         grandpa.paintRed()
         try:
-            if self is parent.getLChild():
+            if self.isLeftChild():
                 grandpa.rotateRight()
         except NoneNodeRefernceException:
             pass
 
         try:
-            if self is parent.getRChild():
+            if self.isRightChild():
                 grandpa.rotateLeft()
         except NoneNodeRefernceException:
             pass
@@ -141,7 +142,7 @@ class RBTNode:
         try:
             parent = self.getParent()
             rChild.parent = parent
-            if parent.getLChild() is self:
+            if self.isLeftChild():
                 parent.lChild = rChild
             else:
                 parent.rChild = rChild
@@ -163,7 +164,7 @@ class RBTNode:
         try:
             parent = self.getParent()
             lChild.parent = parent
-            if parent.getRChild() is self:
+            if self.isRightChild():
                 parent.rChild = lChild
             else:
                 parent.lChild = lChild
@@ -171,30 +172,34 @@ class RBTNode:
             lChild.parent = None
         self.parent = lChild
 
-    def printDescendantNodes(self):
-        print("[" + str(self.value), end=" ")
+    def printDescendantNodes(self, depth):
+        if depth is 0:
+            print("Root [ " + str(self.value), end="")
+        else:
+            print("Depth "+ str(depth) + " [ " + str(self.value), end="")
+        depth += 1
         try:
             lChild = self.getLChild()
-            print("Left : " + str(lChild.value), end=" ")
+            print(", Left : " + str(lChild.value), end="")
         except NoneNodeRefernceException:
             pass
 
         try:
             rChild = self.getRChild()
-            print("Right : " + str(rChild.value), end=" ")
+            print(", Right : " + str(rChild.value), end="")
         except NoneNodeRefernceException:
             pass
-        print("]")
+        print(" ]", end=" ")
 
         try:
             lChild = self.getLChild()
-            lChild.printDescendantNodes()
+            lChild.printDescendantNodes(depth)
         except NoneNodeRefernceException:
             pass
 
         try:
             rChild = self.getRChild()
-            rChild.printDescendantNodes()
+            rChild.printDescendantNodes(depth)
         except NoneNodeRefernceException:
             pass
 
@@ -208,9 +213,9 @@ class RBTNode:
 
     def getSibling(self):
         parent = self.getParent()
-        if parent.value > self.value: # self is left Child
+        if self.isLeftChild(): # self is left Child
             return parent.getRChild()
-        else:
+        elif self.isRightChild():
             return parent.getLChild()
 
     def getParent(self):
@@ -245,6 +250,27 @@ class RBTNode:
         else:
             return True
 
+    def isLeftChild(self):
+        try:
+            return "Left" == self.isLeftOrRightChild()
+        except NoneNodeRefernceException:
+            return False
+
+    def isRightChild(self):
+        try:
+            return "Right" == self.isLeftOrRightChild()
+        except NoneNodeRefernceException:
+            return False
+
+    def isLeftOrRightChild(self):
+        parent = self.getParent()
+        if self is parent.lChild:
+            return "Left"
+        elif self is parent.rChild:
+            return "Right"
+        else:
+            return False
+
     def hasChild(self):
         if self.lChild is not None or self.rChild is not None:
             return True
@@ -275,7 +301,6 @@ class RBTNode:
         else:
             self.paintBlack()
 
-    # TODO - debug
     def getRoot(self):
         parent = self
         try:
