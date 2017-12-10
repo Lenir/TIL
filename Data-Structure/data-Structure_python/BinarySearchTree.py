@@ -115,6 +115,9 @@ class Node:
         self.lchild = None
         self.rchild = None
 
+    def __str__(self):
+        return "< Node : " + str(self.value) +" >"
+
 
 class AlreadyExistingValue(Exception):
     pass
@@ -124,19 +127,20 @@ class NodeNotFound(Exception):
 
 
 def main():
-    binaryTree = BinarySearchTree(8)
-    binaryTree.addNode(3)
-    binaryTree.addNode(10)
-    binaryTree.addNode(6)
-    binaryTree.addNode(1)
-    binaryTree.addNode(4)
-    binaryTree.addNode(14)
-    binaryTree.addNode(7)
-    binaryTree.addNode(13)
+    binaryTree = BinarySearchTree(77)
+    binaryTree.addNode(50)
+    binaryTree.addNode(60)
+    binaryTree.addNode(20)
+    binaryTree.addNode(100)
+    try:
+        print("Searching for 60 : " + str(binaryTree.binarySearch(60)))
+        print("Searching for 60 : " + str(binaryTree.binarySearch(90)))
+    except NodeNotFound:
+        print("NodeNotFound")
 
-    inOrderTraversalList = binaryTree.inOrderTraverse()
-    for element in inOrderTraversalList:
-        print(element.getValue(), end=" ")
+    # inOrderTraversalList = binaryTree.inOrderTraverse()
+    # for element in inOrderTraversalList:
+    #     print(element.getValue(), end=" ")
 
 if __name__ == '__main__':
     main()
