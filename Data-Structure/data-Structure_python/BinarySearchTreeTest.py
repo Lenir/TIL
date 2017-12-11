@@ -3,31 +3,34 @@ import unittest
 
 class BinarySearchTreeTest(unittest.TestCase):
     def setUp(self):
-        self.binaryTree = BinarySearchTree(8)
-        self.binaryTree.addNode(3)
-        self.binaryTree.addNode(10)
-        self.binaryTree.addNode(6)
-        self.binaryTree.addNode(1)
-        self.binaryTree.addNode(4)
-        self.binaryTree.addNode(14)
-        self.binaryTree.addNode(7)
-        self.binaryTree.addNode(13)
+        self.binaryTree = BinarySearchTree()
+        self.binaryTree.addValue(8)
+        self.binaryTree.addValue(3)
+        self.binaryTree.addValue(10)
+        self.binaryTree.addValue(6)
+        self.binaryTree.addValue(1)
+        self.binaryTree.addValue(4)
+        self.binaryTree.addValue(14)
+        self.binaryTree.addValue(7)
+        self.binaryTree.addValue(13)
 
     def tearDown(self):
         del self.binaryTree
 
     def test_treeGen(self):
-        binaryTree = BinarySearchTree(1000)
+        binaryTree = BinarySearchTree()
+        binaryTree.addValue(1000)
         self.assertEqual(1000, binaryTree.root.getValue())
 
     def test_addNode(self):
-        binaryTree = BinarySearchTree(1000)
-        binaryTree.addNode(-10)
+        binaryTree = BinarySearchTree()
+        binaryTree.addValue(1000)
+        binaryTree.addValue(-10)
         self.assertEqual(-10, binaryTree.root.lchild.value)
 
     def test_addSameNode(self):
         try:
-            self.binaryTree.addNode(8)
+            self.binaryTree.addValue(8)
         except AlreadyExistingValue:
             self.assert_
 

@@ -1,12 +1,18 @@
 class BinarySearchTree:
     root = None
 
-    def __init__(self, value):
-        self.root = Node(value)
+    def __init__(self):
+        self.root = None
 
-    def addNode(self, value):
+    def addValue(self, value):
         child = Node(value)
-        self.root.addChild(child)
+        self.addNode(child)
+
+    def addNode(self, node):
+        if self.root is None:
+            self.root = node
+        else:
+            self.root.addChild(node)
 
     def binarySearch(self, value):
         return self.root.binarySearch(value)
