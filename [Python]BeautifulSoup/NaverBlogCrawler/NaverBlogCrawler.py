@@ -4,21 +4,44 @@ import re
 
 class NaverBlogCrawler:
     def __init__(self, url):
+        self.url = url
+        self.postFrameUrl = self.getPostFrameUrl()
+
+    def isSmartEditor3Posting(self, postFrameUrl):
         pass
 
-    def getPostBodyUrl(self, url):
-        postHtmlSource = requests.get("http://blog.naver.com/1net1/221156999402").text
-        soup = BeautifulSoup(html_source, "html5lib")
+    def getPostFrameUrl(self):
+        postHtmlSource = requests.get(self.url).text
+        postSoup = BeautifulSoup(postHtmlSource, "html5lib")
 
-        mainFrameTag = soup.find('frame', {'id': 'mainFrame'})
-        tags = str(mainFrameTag).split(' ')
+        mainFrameTag = postSoup.find('frame', {'id': 'mainFrame'})
+        mainFrameAttr = str(mainFrameTag).split(' ')
 
-        postUrl = ""
-        for attribute in tags:
+        postUrlSuffix = ""
+        for attribute in mainFrameAttr:
             if attribute.startswith("src="):
-                postUrl = str(attribute)[5:len(attribute) - 3]
+                postUrlSuffix = str(attribute)[5:len(attribute) - 3]
 
-        postUrl = postUrl.replace("amp;", "")
-        targetUrl = "https://blog.naver.com" + postUrl
+        postUrlSuffix = postUrlSuffix.replace("amp;", "")
+        postFrameUrl = "https://blog.naver.com" + postUrlSuffix
 
-        return blogPostUrl
+        return postFrameUrl
+
+    def getPostEditAreas(self):
+        if self.postFrameUrl is None:
+            raise InvalidUrl
+        else:
+            postBodyHttpResponse = requests.get(self.postFrameUrl).text
+            postBodySoup = BeautifulSoup(postBodyHttpResponse, "html5lib")
+            editAreas = postBodySoup.find_all('div',{'class':'se_editArea'})
+            return editAreas
+
+    def isTextEditArea(self, editArea):
+        strEditArea = str(editArea)
+        if "se_textView" in strEditArea:
+            return True
+        else:
+            return False
+
+class InvalidUrl(Exception):
+    pass
