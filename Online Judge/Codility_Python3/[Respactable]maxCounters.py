@@ -5,6 +5,7 @@ class MaxCounter:
         self.N = N
         self.counter = [0] * N
         self.max = 0
+        self.nextMax = 0
 
     def initCounter(self, number:int):
         self.counter = [number] * (self.N)
@@ -13,26 +14,24 @@ class MaxCounter:
         maxOperated = False
         for index in range(len(operations)):
             op = operations[index]
-            if maxOperated:
-                if self.isIncreaseOperation(op):
-                    self.increaseOperation(op)
-                    maxOperated = False
-                else:
-                    pass
+            if self.isIncreaseOperation(op):
+                self.increaseOperation(op)
+                maxOperated = False
+            elif not maxOperated:
+                self.maxOperation()
+                maxOperated = True
             else:
-                if self.isIncreaseOperation(op):
-                    self.increaseOperation(op)
-                else:
-                    self.maxOperation()
-                    maxOperated = True
+                pass
 
     def increaseOperation(self, op):
+        if self.counter[op - 1] < self.max:
+            self.counter[op - 1] = self.max
         self.counter[op - 1] += 1
-        if self.max < self.counter[op - 1]:
-            self.max = self.counter[op - 1]
+        if self.nextMax < self.counter[op - 1]:
+            self.nextMax = self.counter[op - 1]
 
     def maxOperation(self):
-        self.initCounter(self.max)
+        self.max = self.nextMax
 
     def isIncreaseOperation(self, op):
         if op != self.N + 1:
@@ -46,11 +45,20 @@ class MaxCounter:
         else:
             return False
 
+    def getResult(self):
+        result = list()
+        for element in self.counter:
+            if element < self.max:
+                result.append(self.max)
+            else:
+                result.append(element)
+        return result
+
 
 def solution(N, A):
     maxcounter = MaxCounter(N)
     maxcounter.processOperations(A)
-    return maxcounter.counter
+    return maxcounter.getResult()
 
 if __name__ == "__main__":
     N = 5
