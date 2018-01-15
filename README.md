@@ -9,17 +9,18 @@ Repository for push what 'Today I Learned'!
 - Do not cheat.
 
 ### TODO
-- [ ] Study for Interview
+- Study for Interview
   - Algorithms
     - Sorting Algorithms
-      - [ ] Selection sort
-      - [ ] Insertion sort
-      - [ ] Bubble sort
-      - [ ] Merge sort
-      - [ ] Quick sort
-      - [ ] Heap sort
-    - Others
-      - [ ] String search
+      - [x] Selection sort
+      - [x] Insertion sort
+      - [x] Bubble sort
+      - [x] Merge sort
+      - [x] Quick sort
+      - [x] Heap sort
+    - String search
+      - [x] KMP algorithm
+      - [x] Aho-Corasick algorithm
   - Data Structures
     - [ ] Binary Trees (Heap, AVL, Red-Black)
     - [ ] Linear structure(Stack, Queue, Linked List)
