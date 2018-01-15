@@ -9,26 +9,26 @@ Repository for push what 'Today I Learned'!
 - Do not cheat.
 
 ### TODO
-- Study for Interview
+- [ ] Study for Interview
   - Algorithms
     - Sorting Algorithms
-      - Selection sort
-      - Insertion sort
-      - Bubble sort
-      - Merge sort
-      - Quick sort
-      - Heap sort
+      - [ ] Selection sort
+      - [ ] Insertion sort
+      - [ ] Bubble sort
+      - [ ] Merge sort
+      - [ ] Quick sort
+      - [ ] Heap sort
     - Others
-      - String search
+      - [ ] String search
   - Data Structures
-    - Binary Trees (Heap, AVL, Red-Black)
-    - Linear structure(Stack, Queue, Linked List)
+    - [ ] Binary Trees (Heap, AVL, Red-Black)
+    - [ ] Linear structure(Stack, Queue, Linked List)
   - OS
-    - Memory structure (process, thread)
-    - fork mechanism
-    - CPU Scheduling algorithm
+    - [ ] Memory structure (process, thread)
+    - [ ] fork mechanism
+    - [ ] CPU Scheduling algorithm
   - Review coding test's code
-    - no1. Drawing skyline
-    - no2. String Differance
-    - no3. Finding Max Quasi
-    - no4. Represent Rational decimal number (Correctness)
+    - [ ] no1. Drawing skyline
+    - [ ] no2. String Differance
+    - [ ] no3. Finding Max Quasi
+    - [ ] no4. Represent Rational decimal number (Correctness)
