@@ -19,15 +19,17 @@ Repository for push what 'Today I Learned'!
       - [x] Quick sort
       - [x] Heap sort
     - String search
-      - [x] KMP algorithm
-      - [x] Aho-Corasick algorithm
+      - [x] KMP algorithm (failure function table)
+      - [x] Aho-Corasick algorithm (KMP + Trie, failure function on Trie)
   - Data Structures
-    - [ ] Binary Trees (Heap, AVL, Red-Black)
-    - [ ] Linear structure(Stack, Queue, Linked List)
+    - [x] Binary Trees (Heap, AVL, Red-Black)
+    - [x] Linear structure(Stack, Queue, Linked List)
   - OS
-    - [ ] Memory structure (process, thread)
-    - [ ] fork mechanism
-    - [ ] CPU Scheduling algorithm
+    - [x] Memory structure (process, thread, JVM)
+    - [x] fork mechanism (pid, memory-copy)
+    - [x] JVM Garbage Collection (eden, survivors, minor GC, major GC, stop-the-world)
+    - [x] Paging algorithms (FIFO, LRU, LFU)
+    - [x] CPU Scheduling algorithms (FCFS, SJF, Round Robin, SRTF)
   - Review coding test's code
     - [ ] no1. Drawing skyline
     - [ ] no2. String Differance
