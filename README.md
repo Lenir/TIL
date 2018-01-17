@@ -30,8 +30,12 @@ Repository for push what 'Today I Learned'!
     - [x] JVM Garbage Collection (eden, survivors, minor GC, major GC, stop-the-world)
     - [x] Paging algorithms (FIFO, LRU, LFU)
     - [x] CPU Scheduling algorithms (FCFS, SJF, Round Robin, SRTF)
+  - Database
+    - [x] Hadoop (Map-Reduce, HDFS, Job Tracker - Task Tracker, Name Node - Data Node)
+    - [x] Sharding, Partitioning (Horizontal & Vertical Partitioning)
+    - [x] Inner Join & Outer Join
   - Review coding test's code
-    - [ ] no1. Drawing skyline
-    - [ ] no2. String Differance
-    - [ ] no3. Finding Max Quasi
-    - [ ] no4. Represent Rational decimal number (Correctness)
+    - [x] no1. Drawing skyline
+    - [x] no2. String Differance
+    - [x] no3. Finding Max Quasi
+    - [x] no4. Represent Rational decimal number (Correctness)
