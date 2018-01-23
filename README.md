@@ -10,6 +10,7 @@ Repository for push what 'Today I Learned'!
 
 ### TODO
 - Review interview mistakes
-  - [ ] Hash set and Tree set
+  - [x] Hash set and Tree set
   - [ ] Method's async, sync
   - [ ] Way for search words in search engine
+  - [ ] (Service performance) latency, throughput
