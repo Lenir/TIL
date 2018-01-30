@@ -2,6 +2,10 @@
 
 #include "listMain.h"
 #include "vectorMain.h"
+#include "setMain.h"
+#include "pairMain.h"
+#include "mapMain.h"
+
 
 
 using namespace std;
@@ -11,4 +15,13 @@ int main(){
 
 	cout<<" <list> "<<endl;
 	list_main();
+
+	cout<<" <set> "<<endl;
+	set_main();
+
+	cout<<" <pair> "<<endl;
+	pair_main();
+
+	cout<<" <map> "<<endl;
+	map_main();
 }
