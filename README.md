@@ -13,5 +13,7 @@ Repository for push what 'Today I Learned'!
   - [x] Hash set and Tree set
   - [x] Method's async, sync
   - [ ] Way for search words in search engine
-  - [ ] (Service performance) latency, throughput
-  - [ ] Make simple C++ or Java Game
+  - [x] (Service performance) latency, throughput
+  - [ ] Make simple cocos game on C++ oriented.
+    - [x] Install and make dev environment for cocos
+    - [ ] make helloworld project
