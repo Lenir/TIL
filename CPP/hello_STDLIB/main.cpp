@@ -5,6 +5,7 @@
 #include "setMain.h"
 #include "pairMain.h"
 #include "mapMain.h"
+#include "callBackMain.hpp"
 
 
 
@@ -24,4 +25,7 @@ int main(){
 
 	cout<<" <map> "<<endl;
 	map_main();
+    
+    	cout<<" <callback - for_each> "<<endl;
+    	callback_main();
 }
