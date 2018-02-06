@@ -4,9 +4,9 @@ import java.util.*;
 
 public class ChatClient implements Runnable {
 	
-	static DataInputStream inputStream = null;
+	static BufferedReader inputStream = null;
 	static BufferedReader reader = null;
-	static PrintStream outputStream = null;
+	static PrintWriter writer = null;
 	
 	static Socket clientSocket = null;
 	
@@ -34,9 +34,9 @@ public class ChatClient implements Runnable {
 		// connect to host, init streams
 		try {
 			clientSocket = new Socket(serverAddr, serverPort);
-			inputStream = new DataInputStream(clientSocket.getInputStream());
+			inputStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			reader = new BufferedReader(new InputStreamReader(System.in));
-			outputStream = new PrintStream(clientSocket.getOutputStream());
+			writer = new PrintWriter(clientSocket.getOutputStream(), true);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -52,7 +52,8 @@ public class ChatClient implements Runnable {
 			
 			
 			while(!clientClosed) {
-				outputStream.println(inputStream.readLine());
+				// print to server
+				writer.println(reader.readLine());
 			}
 				
 			// clean streams up
@@ -66,7 +67,7 @@ public class ChatClient implements Runnable {
 	}
 	
 	static boolean isClientReady() {
-		if(clientSocket != null && inputStream != null && outputStream != null) {
+		if(clientSocket != null && inputStream != null && writer != null) {
 			return true;
 		}else {
 			return false;
@@ -75,20 +76,21 @@ public class ChatClient implements Runnable {
 	
 	static void cleanUpStreams() throws IOException {
 		inputStream.close();
-		outputStream.close();
+		writer.close();
+		reader.close();
+		clientSocket.close();
 	}
 	
 	public void run() {
 		String line;
-		
+		System.out.println(":: Client thread start");
 		try {
 			while((line = inputStream.readLine()) != null) {
-				if(line.equals("Bye")) {
+				if(line.startsWith("Bye")) {
 					break;
 				}
 				System.out.println(line);
 			}
-			
 			clientClosed = true;
 			
 		} catch (IOException e) {

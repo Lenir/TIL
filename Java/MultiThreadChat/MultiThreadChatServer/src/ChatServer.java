@@ -56,8 +56,8 @@ public class ChatServer {
 class ClientThread extends Thread{
 	
 	DataInputStream inputStream = null;
-	PrintStream outputStream = null;
 	
+	PrintWriter writer = null;
 	BufferedReader reader = null;
 	
 	Socket socket;
@@ -74,15 +74,17 @@ class ClientThread extends Thread{
 		System.out.println(":: Client Thread start");
 		try {
 			inputStream = new DataInputStream(socket.getInputStream());
-			reader = new BufferedReader(new InputStreamReader(inputStream));
+			reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			
-			outputStream = new PrintStream(socket.getOutputStream());
+			writer = new PrintWriter(socket.getOutputStream(), true);
 			
-			outputStream.println(":: Type your nickname : ");
+			writer.println(":: Welcome to Chat server");
+			writer.println(":: Type your nickname");
 			
 			nickName = reader.readLine();
+			System.out.println(":: User typed nickname : " + nickName);
 			
-			outputStream.println(":: Your nickname is " + nickName + ". Type /q for quit.");
+			writer.println(":: Your nickname is " + nickName + ". Type /q for quit.");
 			
 			// notify entering user to other users 
 			printMessageToOthers(":: '" + nickName + "' entered room.");
@@ -94,14 +96,16 @@ class ClientThread extends Thread{
 					break;
 				}else {
 					// print chat message to other user
-					printMessageToOthers("<" + nickName + "> : " + line);
+					String message = "<" + nickName + "> : " + line;
+					printMessageToOthers(message);
+					System.out.println(message);
 				}
 			}
 			
 			printMessageToOthers(":: " + nickName + " left the room.");
 			
 			// send "Bye" message that notify client thread should disconnect.
-			outputStream.println("Bye");
+			writer.println("Bye");
 			
 			
 			for(int index = 0; index < clientThreads.length; index++) {
@@ -123,14 +127,14 @@ class ClientThread extends Thread{
 	
 	void printMessageToOthers(String message) {
 		for(int index = 0; index < clientThreads.length; index++) {
-			if(clientThreads[index] != this) {
-				outputStream.println(message);
+			if(clientThreads[index] != this && clientThreads[index] != null) {
+				clientThreads[index].writer.println(message);
 			}
 		}
 	}
 	
 	void cleanUpStreams() throws IOException {
-		outputStream.close();
+		writer.close();
 		inputStream.close();
 	}
 }
