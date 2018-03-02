@@ -38,7 +38,7 @@ int TemplateClassNotInteger<int>::getData() const{
 	return data;
 }
 
-int main(){
+int main_template(){
 	TemplateClassNotInteger<string> strClass("strClassName", "awesome");
 	TemplateClassNotInteger<double> doubleClass("doubleClassName", 3.14);
 	// specialized int template class

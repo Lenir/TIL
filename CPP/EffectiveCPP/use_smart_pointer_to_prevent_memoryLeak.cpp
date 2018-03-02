@@ -5,7 +5,7 @@
  *      Author: Ciel
  */
 
-#include "smart_pointer.hpp"
+#include "use_smart_pointer_to_prevent_memoryLeak.hpp"
 
 using namespace std;
 

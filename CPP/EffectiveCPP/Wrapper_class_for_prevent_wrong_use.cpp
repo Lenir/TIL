@@ -7,7 +7,7 @@
 
 # include "Wrapper_class_for_prevent_wrong_use.hpp"
 
-int main(){
+int main_wrapperClass(){
 	cout << "< When there's no mistakes >" << endl;
 
 	string abrahamAddr = "L.Memorial NW, Washington DC, USA";
