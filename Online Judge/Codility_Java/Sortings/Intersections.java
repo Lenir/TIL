@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.*;
 import java.util.Map;
 /*
-    NOT COMPLETED : 58%
+    NOT COMPLETED : Performance 100, Correctness 60.
  */
 class Disc implements Comparable<Disc>{
     Disc(int center, int radius){
@@ -68,16 +68,46 @@ public class Intersections {
         for(int i = 0; i < totalDiscNum; i++){
 //            System.out.println("i : " + i);
             int curEndPoint = discArray.get(i).getEndPoint();
-            for(int reverseI = sortedStartPoints.length - 1; reverseI >= i; reverseI--){
-                if(sortedStartPoints[reverseI] <= curEndPoint){
-//                    System.out.println(sortedStartPoints[reverseI] + " overd, inter : " + (reverseI - i));
-                    result = result + (reverseI - i);
-                    break;
-                }
+
+            // TODO - impelement binary search
+            int lastIntersectIndex = binarySearch(i, totalDiscNum-1, curEndPoint);
+//            System.out.println("binary search for " + curEndPoint + " is " + lastIntersectIndex + "(" + sortedStartPoints[lastIntersectIndex] + ")");
+            result += (lastIntersectIndex - i);
+            if(result > 10000000){
+                return -1;
             }
 
         }
         return result;
+    }
+
+    int binarySearch(int startIndex, int endIndex, int targetStartPoint){
+        int medianIndex = (endIndex + startIndex)/2;
+        if(medianIndex == endIndex || medianIndex == startIndex){
+            if(sortedStartPoints[endIndex] <= targetStartPoint){
+                return endIndex;
+            }else{
+                return startIndex;
+            }
+        }
+        int pivotValue = sortedStartPoints[medianIndex];
+        if(pivotValue > targetStartPoint){
+            // Pivot value is smaller than target
+            return binarySearch(startIndex, medianIndex, targetStartPoint);
+        }else if(pivotValue < targetStartPoint){
+            // Pivot value is larger than target
+            return binarySearch(medianIndex, endIndex, targetStartPoint);
+        }else{
+            // equals. do linear search.
+            while((medianIndex+1) < endIndex){
+                if(pivotValue != sortedStartPoints[medianIndex+1]){
+                    return medianIndex;
+                }else{
+                    medianIndex += 1;
+                }
+            }
+            return medianIndex;
+        }
     }
 
     void buildSortedStartPoints(){
