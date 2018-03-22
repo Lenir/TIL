@@ -1,14 +1,19 @@
-import java.util.Arrays;
-import java.util.*;
-import java.util.Map;
+
 /*
-    NOT COMPLETED : Performance 100, Correctness 60.
+    END, 100%
  */
+import java.util.*;
 class Disc implements Comparable<Disc>{
     Disc(int center, int radius){
         this.center = center;
         this.start = center - radius;
         this.end = center + radius;
+        if(isOverflow()){
+            end = 2147483647;
+        }
+        if(isUnderflow()){
+            start = -2147483648;
+        }
     }
 
     int getStartPoint(){
@@ -17,6 +22,14 @@ class Disc implements Comparable<Disc>{
 
     int getEndPoint(){
         return this.end;
+    }
+
+    Boolean isOverflow(){
+        return (center > end);
+    }
+
+    Boolean isUnderflow(){
+        return (center < start);
     }
 
     int getNum(){
@@ -71,7 +84,7 @@ public class Intersections {
 
             // TODO - impelement binary search
             int lastIntersectIndex = binarySearch(i, totalDiscNum-1, curEndPoint);
-//            System.out.println("binary search for " + curEndPoint + " is " + lastIntersectIndex + "(" + sortedStartPoints[lastIntersectIndex] + ")");
+//            System.out.println("binary search for " + sortedStartPoints[i] + " to " + curEndPoint + " is " + lastIntersectIndex + "(" + sortedStartPoints[lastIntersectIndex] + "), " + (lastIntersectIndex - i) + "point.");
             result += (lastIntersectIndex - i);
             if(result > 10000000){
                 return -1;
@@ -99,7 +112,7 @@ public class Intersections {
             return binarySearch(medianIndex, endIndex, targetStartPoint);
         }else{
             // equals. do linear search.
-            while((medianIndex+1) < endIndex){
+            while((medianIndex+1) <= endIndex){
                 if(pivotValue != sortedStartPoints[medianIndex+1]){
                     return medianIndex;
                 }else{
@@ -118,7 +131,6 @@ public class Intersections {
     }
 
     int[] A;
-    int[] endPoints;
     int[] sortedStartPoints;
     int totalDiscNum;
     ArrayList<Disc> discArray;
