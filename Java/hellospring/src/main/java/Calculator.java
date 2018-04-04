@@ -16,8 +16,11 @@ public class Calculator {
         return a*b;
     }
 
-    double divide(){
-        return a/b;
+    double divide() throws Exception{
+        if(b == 0){
+            throw new Exception("Divie by zero exception");
+        }
+        return ((double)a)/((double)b);
     }
 
     int a;
