@@ -15,7 +15,7 @@ public class ScheduleBook {
             System.out.println(":: There are no events.");
         }else {
             for (ScheduleEvent event : events) {
-                System.out.println(":: " + event.getName() + " at " + event.getDate().toString());
+                System.out.println(event.toString());
             }
         }
 

@@ -13,9 +13,12 @@ public class Main {
         ScheduleBook book = context.getBean("scheduleBook", ScheduleBook.class);
         ScheduleEvent event_christmas = context.getBean("event", ScheduleEvent.class);
         Date christmas = context.getBean("date", Date.class);
-        christmas.setYear(2018);
-        christmas.setMonth(12);
+
+
         christmas.setDate(25);
+        christmas.setMonth(12);
+        christmas.setYear(2018);
+        System.out.println(christmas.toString());
 
         event_christmas.setDate(christmas);
         event_christmas.setName("2018 CHRISTMAS");

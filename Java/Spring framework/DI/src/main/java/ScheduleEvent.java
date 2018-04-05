@@ -4,28 +4,13 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
-public class ScheduleEvent {
-    ScheduleEvent(String name, Date date){
-        eventName = name;
-        eventDate = date;
-    }
+public interface ScheduleEvent {
+    String getName();
+    Date getDate();
+    void setDate(Date date);
+    void setName(String name);
+    Boolean isLegalHoliday();
+    String toString();
 
-    String getName(){
-        return eventName;
-    }
 
-    Date getDate(){
-        return eventDate;
-    }
-
-    void setDate(Date date){
-        eventDate = date;
-    }
-
-    void setName(String name){
-        eventName = name;
-    }
-
-    String eventName;
-    Date eventDate;
 }
