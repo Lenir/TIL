@@ -1,7 +1,8 @@
+import java.util.Calendar;
 import java.util.Date;
 
 public class PrivateEvent implements ScheduleEvent {
-    PrivateEvent(String name, Date date){
+    PrivateEvent(String name, Calendar date){
         this.name = name;
         this.date = date;
     }
@@ -10,11 +11,11 @@ public class PrivateEvent implements ScheduleEvent {
         return name;
     }
 
-    public Date getDate() {
+    public Calendar getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Calendar date) {
         this.date = date;
     }
 
@@ -26,10 +27,10 @@ public class PrivateEvent implements ScheduleEvent {
         return Boolean.TRUE;
     }
 
-    public String toString(){
-        return ":: " + name + " at " + date.getYear() + ". " + date.getMonth() + ". " + date.getDate() + ".";
-    }
+//    public String toString(){
+//        return ":: " + name + " at " + date.getYear() + ". " + date.getMonth() + ". " + date.getDate() + ".";
+//    }
 
     String name;
-    Date date;
+    Calendar date;
 }

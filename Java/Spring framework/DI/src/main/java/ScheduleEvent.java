@@ -6,8 +6,8 @@ import java.util.TimeZone;
 
 public interface ScheduleEvent {
     String getName();
-    Date getDate();
-    void setDate(Date date);
+    Calendar getDate();
+    void setDate(Calendar date);
     void setName(String name);
     Boolean isLegalHoliday();
     String toString();

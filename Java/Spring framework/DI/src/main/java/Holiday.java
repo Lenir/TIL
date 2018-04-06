@@ -1,7 +1,8 @@
+import java.util.Calendar;
 import java.util.Date;
 
 public class Holiday implements ScheduleEvent {
-    Holiday(String name, Date date){
+    Holiday(String name, Calendar date){
         this.name = name;
         this.date = date;
     }
@@ -10,12 +11,12 @@ public class Holiday implements ScheduleEvent {
         return name;
     }
 
-    public Date getDate() {
+    public Calendar getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = new Date(date.getYear(), date.getMonth(), date.getDate());
+    public void setDate(Calendar date) {
+        this.date = date;
     }
 
     public void setName(String name) {
@@ -28,9 +29,9 @@ public class Holiday implements ScheduleEvent {
 
     @Override
     public String toString(){
-        return ":: < Holiday > " + name + " at " + date.getYear() + ". " + date.getMonth() + ". " + date.getDate() + ".";
+        return ":: < Holiday > " + name + " at " + date.get(Calendar.YEAR) + ". " + (date.get(Calendar.MONTH)+1) + ". " + date.get(Calendar.DATE);
     }
 
     String name;
-    Date date;
+    Calendar date;
 }
