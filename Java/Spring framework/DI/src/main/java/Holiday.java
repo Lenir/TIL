@@ -1,3 +1,5 @@
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -31,6 +33,17 @@ public class Holiday implements ScheduleEvent {
     public String toString(){
         return ":: < Holiday > " + name + " at " + date.get(Calendar.YEAR) + ". " + (date.get(Calendar.MONTH)+1) + ". " + date.get(Calendar.DATE);
     }
+
+    @PostConstruct
+    public void initMethod_withAnnotation() throws Exception {
+        System.out.println("< Holiday > " + name + " bean properties are set.");
+    }
+
+    @PreDestroy
+    public void destroyMethod_withAnnotation() throws Exception {
+        System.out.println("< Holiday > Destroy " + name + " bean.");
+    }
+
 
     String name;
     Calendar date;

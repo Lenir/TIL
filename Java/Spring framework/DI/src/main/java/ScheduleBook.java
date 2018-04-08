@@ -1,7 +1,10 @@
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class ScheduleBook {
+public class ScheduleBook implements InitializingBean, DisposableBean{
     ScheduleBook(){
         events = new ArrayList<ScheduleEvent>();
     }
@@ -31,4 +34,12 @@ public class ScheduleBook {
     }
 
     ArrayList<ScheduleEvent> events;
+
+    public void destroy() throws Exception {
+        System.out.println("< ScheduleBook > Destroy bean");
+    }
+
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("< ScheduleBook > Bean properties are set");
+    }
 }
