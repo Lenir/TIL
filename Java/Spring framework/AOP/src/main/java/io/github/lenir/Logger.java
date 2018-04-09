@@ -3,7 +3,8 @@ package io.github.lenir;
 import org.aspectj.lang.ProceedingJoinPoint;
 
 public class Logger {
-    public Object loggerAOP(ProceedingJoinPoint jointPoint) throws Throwable{
+    public Object logAroundAdvise(ProceedingJoinPoint jointPoint) throws Throwable{
+        // Methid logging advise.
         String signatureStr = jointPoint.getSignature().toShortString();
 
         long startTime = System.currentTimeMillis();
