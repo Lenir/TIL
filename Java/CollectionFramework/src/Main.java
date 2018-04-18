@@ -12,6 +12,9 @@ public class Main {
         TreeSet<Integer> intTreeSet = new TreeSet<>();
         LinkedHashSet<Integer> intLinkedHashSet = new LinkedHashSet<>();
         HashMap<Integer, Integer> intHashMap = new HashMap<>();
+        LinkedHashMap<Integer, Integer> intLinkedHashMap = new LinkedHashMap<>();
+        Hashtable<Integer, Integer> intHashtable = new Hashtable<>();
+        TreeMap<Integer, Integer> intTreeMap = new TreeMap<>();
 
 
         System.out.println("  < Element inserting estimate time >");
@@ -61,6 +64,25 @@ public class Main {
             intHashMap.put(i, i);
         }
         long timeInputHashMap = System.currentTimeMillis() - beforeInput;
+        beforeInput = System.currentTimeMillis();
+
+        for(int i = startElement; i < endElement; i++){
+            intLinkedHashMap.put(i, i);
+        }
+        long timeInputLinkedHashMap = System.currentTimeMillis() - beforeInput;
+        beforeInput = System.currentTimeMillis();
+
+        for(int i = startElement; i < endElement; i++){
+            intHashtable.put(i, i);
+        }
+        long timeInputHashtable = System.currentTimeMillis() - beforeInput;
+        beforeInput = System.currentTimeMillis();
+
+        for(int i = startElement; i < endElement; i++){
+            intTreeMap.put(i, i);
+        }
+        long timeInputTreeMap = System.currentTimeMillis() - beforeInput;
+
 
         System.out.println(":: ArrayList : " + (timeInputArrayList/1000.0) + "sec");
         System.out.println(":: LinkedList : " + (timeInputLinkedList/1000.0) + "sec");
@@ -69,6 +91,9 @@ public class Main {
         System.out.println(":: TreeSet : " + (timeInputTreeSet/1000.0) + "sec");
         System.out.println(":: LinkedHashSet : " + (timeInputLinkedHashSet/1000.0) + "sec");
         System.out.println(":: HashMap : " + (timeInputHashMap/1000.0) + "sec");
+        System.out.println(":: LinkedHashMap : " + (timeInputLinkedHashMap/1000.0) + "sec");
+        System.out.println(":: Hashtable : " + (timeInputHashtable/1000.0) + "sec");
+        System.out.println(":: TreeMap : " + (timeInputTreeMap/1000.0) + "sec");
 
         System.out.println("\n  < Element Sorting >");
 
@@ -145,6 +170,6 @@ public class Main {
             elementNum += 1;
         }
         System.out.println();
-
+        
     }
 }
