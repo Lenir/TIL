@@ -9,7 +9,6 @@ public class ArrayListContainer {
     void addElements(int elementNum){
         for(int i = 0; i < elementNum; i++){
             intArrayList.add(((int)(Math.random()*elementNum*2)-elementNum));
-//            System.out.println(intArrayList);
         }
     }
 
