@@ -4,38 +4,36 @@ import java.util.*;
 
 public class NailingPlanks {
 
-    NailingPlanks(int[] plankStartPoints, int[] plankEndPoints, int[] nailPoints){
-        plankLocations = getPlankLocations(plankStartPoints, plankEndPoints);
-        this.nailPoints = nailPoints;
-    }
+    TreeMap<Integer, Integer> buildNailMap(int[] nails){
+        TreeMap<Integer, Integer> nailMap = new TreeMap<>();
 
-    TreeMap<Integer, Integer> getPlankStartTreeMap(int[] plankStartPoints){
-        TreeMap<Integer, Integer> planks = new TreeMap<>();
-
-        for(int index = 0; index < plankStartPoints.length; index++){
-            planks.put(plankStartPoints[index], index);
+        for(int index = 0; index < nails.length; index++){
+            nailMap.put(nails[index], index);
         }
 
-        return planks;
+        return nailMap;
     }
 
-    TreeMap<Integer, Integer> getPlankEndTreeMap(int[] plankEndPoints){
-        TreeMap<Integer, Integer> planks = new TreeMap<>();
+    int findFrontmostNail(int plankStart, int plankEnd, TreeMap<Integer, Integer> nails){
+        int nailIndex = -1;
 
-        for(int index = 0; index < plankStartPoints.length; index++){
-            planks.put(plankEndPoints[index], index);
+        int begin = 0;
+        int end = nails.size();
+        while(begin < end){
+            int median = (begin + end) / 2;
+            int medianStart =
         }
 
-        return planks;
+        return nailIndex;
     }
 
-    int getLeastNailNum(int[] plankStartPoints, int[] plankEndPoints, int[] nailPoints){
-        TreeMap<Integer, Integer> plankStartMap = getPlankStartTreeMap(plankStartPoints);
-        TreeMap<Integer, Integer> plnakEndMap = getPlankEndTreeMap(plankEndPoints);
+    int getLeastNailNum(int[] plankStartPoints, int[] plankEndPoints, int[] nails){
 
-        for(int nailIndex = 0; nailIndex < nailPoints.length; nailIndex++){
-            // TODO : add search algorithm
-            return nailIndex;
+        TreeMap<Integer, Integer> nailMap = buildNailMap(nails);
+
+        for(int plankIndex = 0; plankIndex < plankStartPoints.length; plankIndex++){
+            // TODO : find every plank's frontmost nail. return max nailIndex.
+
         }
 
         return -1;
