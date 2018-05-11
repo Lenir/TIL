@@ -1,6 +1,6 @@
 // Respectful difficulty
 
-import java.util.TreeMap;
+import java.util.*;
 
 public class NailingPlanks {
 
@@ -9,19 +9,32 @@ public class NailingPlanks {
         this.nailPoints = nailPoints;
     }
 
-    TreeMap<Integer, Integer> getPlankLocations(int[] plankStartPoints, int[] plankEndPoints){
+    TreeMap<Integer, Integer> getPlankStartTreeMap(int[] plankStartPoints){
         TreeMap<Integer, Integer> planks = new TreeMap<>();
 
         for(int index = 0; index < plankStartPoints.length; index++){
-            planks.put(plankStartPoints[index], plankEndPoints[index]);
+            planks.put(plankStartPoints[index], index);
         }
 
         return planks;
     }
 
-    int getLeastNailNum(){
+    TreeMap<Integer, Integer> getPlankEndTreeMap(int[] plankEndPoints){
+        TreeMap<Integer, Integer> planks = new TreeMap<>();
+
+        for(int index = 0; index < plankStartPoints.length; index++){
+            planks.put(plankEndPoints[index], index);
+        }
+
+        return planks;
+    }
+
+    int getLeastNailNum(int[] plankStartPoints, int[] plankEndPoints, int[] nailPoints){
+        TreeMap<Integer, Integer> plankStartMap = getPlankStartTreeMap(plankStartPoints);
+        TreeMap<Integer, Integer> plnakEndMap = getPlankEndTreeMap(plankEndPoints);
+
         for(int nailIndex = 0; nailIndex < nailPoints.length; nailIndex++){
-            // TODO : write code that determine which planks are nailed.
+            // TODO : add search algorithm
             return nailIndex;
         }
 
@@ -29,7 +42,5 @@ public class NailingPlanks {
     }
 
 
-
-    TreeMap<Integer, Integer> plankLocations;
     int[] nailPoints;
 }
